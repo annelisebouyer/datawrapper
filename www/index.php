@@ -172,17 +172,29 @@ function add_header_vars(&$page, $active = null) {
 }
 
 
-function add_editor_nav(&$page, $step) {
+function add_editor_nav(&$page, $cur_step) {
     // define 4 step navigation
     $steps = array();
-    $steps[] = array('index'=>1, 'id'=>'upload', 'title'=>_('Upload Data'));
-    $steps[] = array('index'=>2, 'id'=>'describe', 'title'=>_('Check & Describe'));
-    $steps[] = array('index'=>3, 'id'=>'visualize', 'title'=>_('Visualize'));
-    $steps[] = array('index'=>4, 'id'=>'publish', 'title'=>_('Publish & Embed'));
-    $page['steps'] = $steps;
+    $steps[] = array('id'=>'upload', 'title'=>_('Upload Data'), 'icon' => 'upload');
+    $steps[] = array('id'=>'describe', 'title'=>_('Check & Describe'), 'icon' => 'ok');
+    $steps[] = array('id'=>'visualize', 'title'=>_('Visualize'), 'icon' => 'signal');
+    $steps[] = array('id'=>'annotate', 'title'=>_('Annotate'), 'icon' => 'pencil');
+    $steps[] = array('id'=>'publish', 'title'=>_('Publish & Embed'), 'icon' => 'share-alt');
+
+    $headlinks[] = array();
+    foreach ($steps as $i => $step) {
+        $step['url'] = $step['id'];
+        $step['disabled'] = $i > $cur_step;
+        $step['active'] = $i + 1 == $cur_step;
+        $headlinks[] = $step;
+        if ($i < 4) $headlinks[] = 'arrow';
+    }
+    $page['headlinks'] = $headlinks;
+    $page['steps'] = array();
     $page['chartLocale'] = $page['locale'];
     $page['metricPrefix'] = get_metric_prefix($page['chartLocale']);
-    $page['createstep'] = $step;
+    $page['createstep'] = $cur_step;
+    $page['invert_navbar'] = true;
 }
 
 

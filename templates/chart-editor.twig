@@ -6,8 +6,13 @@
   {% trans "Your changes have been saved." %}
 </div>
 
+<style type="text/css">
+body {
+    background-image: url(/static/img/bg/satinweave.png);
+}
+</style>
 
-<div class="row create-nav">
+{#<div class="row create-nav">
     {% for step in steps %}
         {% if createstep > step.index or createstep != step.index and chart.lastEditStep >= step.index %}
             <a href="{{ step.id }}" class="submit span3{% if createstep == step.index %} active{% else %}{% if createstep > step.index %} passed{% endif %}{% endif %}">
@@ -31,7 +36,7 @@
         {% endif %}
 
     {% endfor %}
-</div>
+</div>#}
 
 {% if user != chart.user and user.isAdmin() %}
 <div class="alert alert-danger" style="text-align:center">
