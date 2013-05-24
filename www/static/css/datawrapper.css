@@ -28,7 +28,7 @@ html .navbar li.disabled a {
 }
 
 html .navbar.navbar-inverse li.disabled a {
-    color: #444;
+    color: #666;
 }
 
 html .navbar li.disabled a:hover {
@@ -36,7 +36,7 @@ html .navbar li.disabled a:hover {
 }
 
 .navbar.navbar-inverse li.disabled a:hover {
-    color: #444;
+    color: #666;
 }
 html .navbar li.disabled i {
     opacity: 0.3;
